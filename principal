@@ -1,0 +1,93 @@
+package javaapplication5;
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class principal {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<funcionario> funcionarios = new ArrayList<>();
+
+     
+        for (int i = 0; i < 6; i++) {
+            System.out.println("Cadastro do Funcionário " + (i + 1));
+            System.out.print("Nome: ");
+            String nome = scanner.nextLine();
+            System.out.print("Sexo (M/F): ");
+            String sexo = scanner.nextLine();
+            System.out.print("Cargo: ");
+            String cargo = scanner.nextLine();
+            System.out.print("Salário Base: ");
+            float salarioBase = scanner.nextFloat();
+            System.out.print("Horas Extras: ");
+            float horasExtras = scanner.nextFloat();
+            System.out.print("Número de Filhos: ");
+            int numeroFilhos = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer
+
+            funcionario funcionario = new funcionario(nome, sexo, cargo, salarioBase, horasExtras, numeroFilhos);
+            funcionarios.add(funcionario);
+
+            System.out.println("Funcionário cadastrado com sucesso!\n");
+        }
+
+    
+        System.out.println("\n--- Funcionários Cadastrados ---");
+        for (funcionario func : funcionarios) {
+            func.imprimirDados();
+            System.out.println();
+        }
+
+    
+        int quantidadeHomens = 0;
+        int quantidadeMulheres = 0;
+        for (funcionario func : funcionarios) {
+            if (func.getSexo().equalsIgnoreCase("M")) {
+                quantidadeHomens++;
+            } else if (func.getSexo().equalsIgnoreCase("F")) {
+                quantidadeMulheres++;
+            }
+        }
+        System.out.println("Quantidade de Homens: " + quantidadeHomens);
+        System.out.println("Quantidade de Mulheres: " + quantidadeMulheres);
+
+      
+        funcionario maisFilhos = funcionarios.get(0);
+        for (funcionario func : funcionarios) {
+            if (func.getNumeroFilhos() > maisFilhos.getNumeroFilhos()) {
+                maisFilhos = func;
+            }
+        }
+        System.out.println("Funcionário com mais filhos: " + maisFilhos.getNome());
+
+  
+        funcionario maisHorasExtras = funcionarios.get(0);
+        for (funcionario func : funcionarios) {
+            if (func.getHorasExtras() > maisHorasExtras.getHorasExtras()) {
+                maisHorasExtras = func;
+            }
+        }
+        System.out.println("Funcionário com mais horas extras: " + maisHorasExtras.getNome());
+
+    
+        funcionario maiorSalario = funcionarios.get(0);
+        for (funcionario func : funcionarios) {
+            if (func.calcular_salario() > maiorSalario.calcular_salario()) {
+                maiorSalario = func;
+            }
+        }
+        System.out.println("\nFuncionário com maior salário:");
+        maiorSalario.imprimirDados();
+
+   
+        float somaSalarios = 0;
+        for (funcionario func : funcionarios) {
+            somaSalarios += func.calcular_salario();
+        }
+        float mediaSalarial = somaSalarios / funcionarios.size();
+        System.out.println("Média Salarial dos Funcionários: R$ " + mediaSalarial);
+
+    }
+}
+
