@@ -1,0 +1,86 @@
+package javaapplication5;
+
+public class funcionario {
+
+    private String nome;
+    private String sexo;
+    private String cargo;
+    private float salario_base;
+    private float horas_extras;
+    private int numero_filhos;
+
+    public funcionario(String nome, String sexo, String cargo,
+            float salario_base, float horas_extras, int numero_filhos) {
+        this.nome = nome;
+        this.sexo = sexo;
+        this.cargo = cargo;
+        this.salario_base = salario_base;
+        this.horas_extras = horas_extras;
+        this.numero_filhos = numero_filhos;
+
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public float getSlarioBase(String cargo) {
+        return salario_base;
+    }
+
+    public float getHorasExtras() {
+        return horas_extras;
+    }
+
+    public void setHorasExtras(float horasExtras) {
+        this.horas_extras = horas_extras;
+    }
+
+    public int getNumeroFilhos() {
+        return numero_filhos;
+    }
+
+    public void setNumeroFilhos(int numeroFilhos) {
+        this.numero_filhos = numero_filhos;
+    }
+
+    public float calcular_salario (){
+        float adicionalFilho = numero_filhos * 18.50f;
+        float valorHoraExtra = (salario_base/ 220)* 1.2f;
+        float totalHorasExtras = horas_extras * valorHoraExtra;
+        
+        return salario_base + adicionalFilho + totalHorasExtras;
+    }
+    
+    public void imprimirDados() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Sexo: " + sexo);
+        System.out.println("Cargo: " + cargo);
+        System.out.println("Salário Base: R$ " + salario_base);
+        System.out.println("Horas Extras: " + horas_extras);
+        System.out.println("Número de Filhos: " + numero_filhos);
+        System.out.println("Salário Total: R$ " + calcular_salario());
+    }
+}
+
+
